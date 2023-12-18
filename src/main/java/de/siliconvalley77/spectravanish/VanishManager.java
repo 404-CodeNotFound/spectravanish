@@ -44,4 +44,12 @@ public class VanishManager {
     public void hideAll(Player player){
         vanished.forEach(player1 -> player.hidePlayer(plugin, player1));
     }
+
+    public void showPlayers(Player player){
+        vanished.forEach(player1 -> player.showPlayer(plugin, player1));
+    }
+
+    public void showPlayer(Player player, Player vanishedPlayer){
+        player.showPlayer(vanishedPlayer);
+    }
 }

@@ -2,3 +2,6 @@ name: SpectraVanish
 version: '${project.version}'
 main: de.siliconvalley77.spectravanish.Main
 api-version: '1.19'
+commands:
+  sv:
+    description: "Vanish Command"

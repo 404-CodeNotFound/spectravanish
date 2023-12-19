@@ -1,6 +1,7 @@
 package de.siliconvalley77.spectravanish;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
@@ -56,13 +57,13 @@ public class VanishManager {
             if (hasSeeOthersPermission) {
                 message = playerName + " has entered vanish mode.";
             } else {
-                message = playerName + " left the game.";
+                message = ChatColor.YELLOW + playerName + " left the game.";
             }
         } else {
             if (hasSeeOthersPermission) {
                 message = playerName + " has left vanish mode.";
             } else {
-                message = playerName + " left the game.";
+                message = ChatColor.YELLOW + playerName + " left the game.";
             }
         }
 

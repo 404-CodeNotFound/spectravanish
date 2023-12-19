@@ -6,7 +6,7 @@
 
     <groupId>de.siliconValley77</groupId>
     <artifactId>SpectraVanish</artifactId>
-    <version>1.3</version>
+    <version>1.4</version>
     <packaging>jar</packaging>
 
     <name>SpectraVanish</name>

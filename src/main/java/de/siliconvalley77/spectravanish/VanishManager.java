@@ -25,21 +25,51 @@ public class VanishManager {
     }
 
     public void setVanished(Player player, boolean bool) {
-        if (bool){
+        boolean hasSeeOthersPermission = player.hasPermission("spectravanish.seeothers");
+
+        if (bool) {
             vanished.add(player);
-        }else {
+            sendVanishMessage(player, true, hasSeeOthersPermission);
+        } else {
             vanished.remove(player);
+            sendVanishMessage(player, false, hasSeeOthersPermission);
         }
 
-        for (Player onlinePLayer : Bukkit.getOnlinePlayers()){
-            if(player.equals(onlinePLayer)) continue;
-            if (bool){
-                onlinePLayer.hidePlayer(plugin, player);
-            }else {
-                onlinePLayer.showPlayer(plugin, player);
+        for (Player onlinePlayer : Bukkit.getOnlinePlayers()) {
+            if (player.equals(onlinePlayer)) continue;
+
+            if (!hasSeeOthersPermission) {
+                if (bool) {
+                    onlinePlayer.hidePlayer(plugin, player);
+                } else {
+                    onlinePlayer.showPlayer(plugin, player);
+                }
             }
         }
     }
+
+    private void sendVanishMessage(Player player, boolean enteringVanish, boolean hasSeeOthersPermission) {
+        String playerName = player.getName();
+        String message;
+
+        if (enteringVanish) {
+            if (hasSeeOthersPermission) {
+                message = playerName + " has entered vanish mode.";
+            } else {
+                message = playerName + " left the game.";
+            }
+        } else {
+            if (hasSeeOthersPermission) {
+                message = playerName + " has left vanish mode.";
+            } else {
+                message = playerName + " left the game.";
+            }
+        }
+
+        Bukkit.broadcastMessage(message);
+    }
+
+
 
     public void hideAll(Player player){
         vanished.forEach(player1 -> player.hidePlayer(plugin, player1));
